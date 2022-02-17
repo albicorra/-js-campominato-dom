@@ -2,6 +2,8 @@ const difficult = document.getElementById('difficult')
 const buttonPlay = document.getElementById('play')
 const containerGame = document.querySelector('.ms_container-game')
 const divElement = document.createElement('div')
+const resultLose = document.querySelector('.result-lose')
+const resultWin = document.querySelector('.result-win')
 let containerSquare;
 let square;
 let row;
@@ -11,6 +13,8 @@ let hardSize = 'calc( 100% / 9)';
 let crazySize = 'calc( 100% / 7)';
 let bombArray = [];
 let bomb;
+let score = 0;
+let messageLose;
 
 function getRandomIntInclusive(min, max) {
 
@@ -18,6 +22,24 @@ function getRandomIntInclusive(min, max) {
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min + 1) + min);
  
+}
+
+function youWin(point, result) {
+    
+    let messageWin = `Bravo, hai vinto con ${point} score!`
+    result.append(messageWin)
+
+    return messageWin
+
+}
+
+function youLose(point, result) {
+    
+    let messageLose = `Mi dispiace, hai perso con ${point} score :(`
+    result.append(messageLose)
+   
+    return messageLose
+
 }
 
 buttonPlay.addEventListener('click', function(){
@@ -35,14 +57,24 @@ buttonPlay.addEventListener('click', function(){
         
     }else if (difficult.value == 3) {
         
-        row = 7
-        column = 7
+        row = 5
+        column = 5
         
     }
     
     containerSquare = row*column
     let squareSize = `calc( 100% / ${column} )`
     containerGame.innerHTML = ''
+
+    while (bombArray.length !== 16) {
+        const bomb = getRandomIntInclusive(1, containerSquare);
+    
+        if (!bombArray.includes(bomb)) {
+            bombArray.push(bomb)
+        }
+        
+    }
+    console.log(bombArray)
     
     for (let i = 0; i < containerSquare; i++) {
         
@@ -57,38 +89,31 @@ buttonPlay.addEventListener('click', function(){
         const letsPlay = () => {
             
             console.log( 'hai cliccato un quadrato' , square, i)
-            square.classList.add('selected')
-            
+
+            if (bombArray.includes(i)) {
+                square.classList.add('bomb')
+                resultLose.innerHTML = youLose(score, resultLose)
+                resultLose.classList.add('active')
+
+            }else{
+                square.classList.add('selected')
+                score ++
+            }
+
+            if ( (containerSquare - bombArray.length) == score ) {
+                resultWin.innerHTML = youWin(score,resultWin)
+                resultWin.classList.add('active')
+            }
+    
             square.removeEventListener('click', letsPlay)
             
-        }
+        }  
         
         square.addEventListener('click', letsPlay);
+
         
     }
     
-    /* for (let j = 0; j < 16; j++) {
-        const bomb = getRandomIntInclusive(1, containerSquare);
-        bombArray.push(bomb)
-        console.log(bomb)
-    } */
-    
-    
-    while (bombArray.length !== 16) {
-        const bomb = getRandomIntInclusive(1, containerSquare);
-    
-        /* for (let j = 0; j < bombArray.length; j++) {
-            if (bomb === bombArray[j]) {
-                j--
-            }else{
-                bombArray.push(bomb)
-            }
-            
-        }
-    */
-        console.log(bombArray)
-    
-    }
     
 })
 

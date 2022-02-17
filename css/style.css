@@ -57,6 +57,20 @@
     user-select: none;
 }
 
+.result-lose{
+    color: red;
+    display: none;
+}
+
+.result-win{
+    color: green;
+    display: none;
+}
+
+.active{
+    display: block;
+}
+
 .selected{
     background-color: cornflowerblue;
 }
