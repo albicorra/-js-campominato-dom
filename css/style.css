@@ -1,0 +1,66 @@
+.ms_container-fluid{
+    height: 100vh;
+}
+
+.ms_header{
+    height: 90px;
+    background-color: aquamarine;
+    align-items: center;
+    justify-content: end;
+}
+
+.ms_main{
+    flex-grow: 1;
+    background-color: antiquewhite;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.ms_footer{
+    height: 90px;
+    background-color: blueviolet;
+}
+
+
+/* header */
+#difficult{
+    height: 40px;
+    margin: 10px;
+}
+
+#play{
+    height: 40px;
+    margin: 10px;
+}
+
+
+/* main */
+.ms_container-game{
+    width: 500px;
+    aspect-ratio: 1;
+    background-color: blueviolet;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    padding: 0;
+}
+
+.ms_item{
+    width: calc(100% / 10);
+    aspect-ratio: 1;
+    border: 1px solid #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    user-select: none;
+}
+
+.selected{
+    background-color: cornflowerblue;
+}
+
+.bomb{
+    background-color: crimson;
+}
