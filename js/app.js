@@ -14,7 +14,6 @@ let crazySize = 'calc( 100% / 7)';
 let bombArray = [];
 let bomb;
 let score = 0;
-let messageLose;
 
 function getRandomIntInclusive(min, max) {
 
@@ -57,8 +56,8 @@ buttonPlay.addEventListener('click', function(){
         
     }else if (difficult.value == 3) {
         
-        row = 5
-        column = 5
+        row = 7
+        column = 7
         
     }
     
