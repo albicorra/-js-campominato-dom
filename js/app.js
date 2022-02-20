@@ -28,16 +28,16 @@ function youWin(point, result) {
     let messageWin = `Bravo, hai vinto con ${point} score!`
     result.append(messageWin)
 
-    return messageWin
+    return messageWin;
 
 }
 
 function youLose(point, result) {
     
-    let messageLose = `Mi dispiace, hai perso con ${point} score :(`
-    result.append(messageLose)
+    let messageLose = `Mi dispiace, hai perso con ${point} score :(`;
+    result.append(messageLose);
    
-    return messageLose
+    return messageLose;
 
 }
 
@@ -45,25 +45,27 @@ buttonPlay.addEventListener('click', function(){
     
     
     if (difficult.value == 1) {
-        
-        row = 10
-        column = 10
+        /* ho modificato la larghezza per far si che venisse meglio il background */
+        row = 11;
+        column = 11;
         
     }else if (difficult.value == 2) {
         
-        row = 9
-        column = 9
+        row = 9;
+        column = 9;
         
     }else if (difficult.value == 3) {
         
-        row = 7
-        column = 7
+        row = 7;
+        column = 7;
         
     }
     
-    containerSquare = row*column
-    let squareSize = `calc( 100% / ${column} )`
-    containerGame.innerHTML = ''
+    containerSquare = row*column;
+    let squareSize = `calc( 100% / ${column} )`;
+    containerGame.innerHTML = '';
+    resultLose.innerHTML = '';
+    resultWin.innerHTML = '';
 
     while (bombArray.length !== 16) {
         const bomb = getRandomIntInclusive(1, containerSquare);
@@ -73,12 +75,18 @@ buttonPlay.addEventListener('click', function(){
         }
         
     }
+
     console.log(bombArray)
     
     for (let i = 0; i < containerSquare; i++) {
         
         let square = document.createElement('div')
         square.classList.add('ms_item')
+        if (i % 2 == 0) {
+            square.classList.add('square-pari')
+        }else{
+            square.classList.add('square-dispari')
+        }
         square.style.width = squareSize
         containerGame.append(square)
         /* console.log(containerGame) */
